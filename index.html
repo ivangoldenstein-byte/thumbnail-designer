@@ -1,0 +1,966 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thumbnail Designer — Portfolio</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+:root {
+    --bg: #0a0a0a;
+    --surface: #141414;
+    --text: #f1f0eb;
+    --muted: #858585;
+    --line: #292929;
+    --accent: #c6f36a;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 100px;
+}
+
+body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button {
+    font: inherit;
+    cursor: pointer;
+}
+
+.container {
+    width: min(1160px, 88%);
+    margin: auto;
+}
+
+/* NAVIGATION */
+
+header {
+    height: 85px;
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    background: rgba(10,10,10,.94);
+    backdrop-filter: blur(15px);
+    z-index: 100;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: min(1160px, 88%);
+    margin: auto;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.profile-picture {
+    width: 39px;
+    height: 39px;
+    border-radius: 50%;
+    object-fit: cover;
+    background: #252525;
+    border: 1px solid #444;
+}
+
+.brand-name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.nav-button {
+    background: none;
+    border: none;
+    color: var(--text);
+    font-size: 13px;
+}
+
+.contact-button {
+    background: var(--text);
+    color: var(--bg);
+    padding: 12px 21px;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 13px;
+    border: none;
+    transition: .2s;
+}
+
+.contact-button:hover {
+    background: var(--accent);
+}
+
+.dropdown {
+    position: relative;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 32px;
+    width: 190px;
+    padding: 10px;
+    background: #191919;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+}
+
+.dropdown-content a {
+    display: block;
+    padding: 12px;
+    font-size: 13px;
+    color: #ccc;
+    border-radius: 3px;
+}
+
+.dropdown-content a:hover {
+    background: #292929;
+    color: white;
+}
+
+.dropdown.open .dropdown-content {
+    display: block;
+}
+
+/* GENERAL SECTIONS */
+
+section {
+    padding: 120px 0;
+    border-bottom: 1px solid var(--line);
+}
+
+.section-label {
+    color: var(--accent);
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+h1, h2, h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+}
+
+h2 {
+    font-size: clamp(38px, 5vw, 62px);
+    letter-spacing: -2.5px;
+}
+
+/* ME */
+
+#me {
+    padding: 150px 0;
+}
+
+.intro-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 90px;
+    align-items: start;
+}
+
+.intro-title {
+    font-size: clamp(65px, 9vw, 112px);
+    line-height: .95;
+    letter-spacing: -7px;
+}
+
+.intro-subtitle {
+    color: var(--muted);
+    font-size: 19px;
+    margin-top: 28px;
+    max-width: 330px;
+    line-height: 1.6;
+}
+
+.intro-description {
+    padding-top: 15px;
+    color: #b7b7b7;
+    font-size: 16px;
+    line-height: 1.9;
+}
+
+.intro-description strong {
+    color: var(--text);
+    font-weight: 600;
+}
+
+.intro-description p {
+    margin-bottom: 24px;
+}
+
+.intro-description ul {
+    list-style: none;
+    margin: 14px 0 30px;
+}
+
+.intro-description li {
+    padding: 9px 0;
+    border-bottom: 1px solid var(--line);
+}
+
+.intro-description li::before {
+    content: "↗";
+    color: var(--accent);
+    margin-right: 13px;
+}
+
+.availability {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 25px;
+}
+
+.availability::before {
+    content: "";
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--accent);
+}
+
+/* WORKFLOW */
+
+.section-heading {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    margin-bottom: 50px;
+}
+
+.section-description {
+    color: var(--muted);
+    font-size: 14px;
+    margin-top: 14px;
+}
+
+.carousel {
+    overflow: hidden;
+    position: relative;
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform .4s ease;
+}
+
+.workflow-slide {
+    flex: 0 0 100%;
+    min-width: 0;
+}
+
+.workflow-slide img {
+    width: 100%;
+    height: 470px;
+    object-fit: contain;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+}
+
+.slide-caption {
+    display: flex;
+    justify-content: space-between;
+    padding: 17px 0;
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.carousel-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.carousel-controls button {
+    width: 42px;
+    height: 42px;
+    background: transparent;
+    border: 1px solid var(--line);
+    color: white;
+    border-radius: 50%;
+    font-size: 18px;
+}
+
+.carousel-controls button:hover {
+    background: var(--text);
+    color: var(--bg);
+}
+
+.upload-label {
+    display: inline-block;
+    padding: 12px 18px;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    color: var(--muted);
+    font-size: 12px;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.upload-label:hover {
+    color: var(--text);
+    border-color: var(--text);
+}
+
+input[type="file"] {
+    display: none;
+}
+
+/* PORTFOLIO GALLERY */
+
+.gallery-heading {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    margin-bottom: 50px;
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+}
+
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    background: var(--surface);
+    aspect-ratio: 16 / 9;
+    border-radius: 4px;
+    border: 1px solid var(--line);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform .4s;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.035);
+}
+
+.gallery-item button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: rgba(0,0,0,.75);
+    border: none;
+    color: white;
+    border-radius: 4px;
+    padding: 8px 11px;
+    opacity: 0;
+    transition: .2s;
+}
+
+.gallery-item:hover button {
+    opacity: 1;
+}
+
+.empty-gallery {
+    grid-column: 1 / -1;
+    min-height: 260px;
+    border: 1px dashed #393939;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    color: var(--muted);
+    text-align: center;
+}
+
+.empty-gallery span {
+    font-size: 30px;
+    color: #555;
+}
+
+/* FAQ */
+
+#contact {
+    padding-bottom: 100px;
+}
+
+.faq-contact {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 100px;
+    margin-top: 55px;
+}
+
+.faq-item {
+    border-bottom: 1px solid var(--line);
+}
+
+.faq-question {
+    width: 100%;
+    background: none;
+    color: var(--text);
+    border: none;
+    padding: 23px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-align: left;
+    font-size: 15px;
+}
+
+.faq-question span {
+    color: var(--accent);
+    font-size: 21px;
+}
+
+.faq-answer {
+    display: none;
+    padding: 0 25px 22px 0;
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+.faq-item.active .faq-answer {
+    display: block;
+}
+
+.faq-item.active .faq-question span {
+    transform: rotate(45deg);
+}
+
+.contact-info h3 {
+    font-size: 38px;
+    letter-spacing: -1px;
+    margin-bottom: 15px;
+}
+
+.contact-info > p {
+    color: var(--muted);
+    line-height: 1.7;
+    font-size: 14px;
+    margin-bottom: 30px;
+}
+
+.contact-links {
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-links a {
+    padding: 17px 0;
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+}
+
+.contact-links a:hover {
+    color: var(--accent);
+}
+
+footer {
+    padding: 30px 0;
+    color: var(--muted);
+    font-size: 11px;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* RESPONSIVE */
+
+@media(max-width: 750px) {
+    section {
+        padding: 85px 0;
+    }
+
+    #me {
+        padding: 100px 0;
+    }
+
+    .intro-grid,
+    .faq-contact {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .intro-title {
+        letter-spacing: -4px;
+    }
+
+    .nav-right {
+        gap: 15px;
+    }
+
+    .brand-name {
+        font-size: 12px;
+    }
+
+    .profile-picture {
+        width: 32px;
+        height: 32px;
+    }
+
+    .gallery {
+        grid-template-columns: 1fr;
+    }
+
+    .workflow-slide img {
+        height: 280px;
+    }
+
+    .section-heading {
+        gap: 20px;
+        align-items: start;
+    }
+
+    .gallery-heading {
+        align-items: start;
+        gap: 20px;
+        flex-direction: column;
+    }
+}
+
+@media(max-width: 420px) {
+    .nav-button {
+        font-size: 12px;
+    }
+
+    .contact-button {
+        padding: 10px 12px;
+        font-size: 11px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVIGATION -->
+
+<header>
+<nav>
+    <a href="#me" class="brand">
+        <img class="profile-picture" src="https://placehold.co/100x100/252525/ffffff?text=ME" alt="Profile">
+        <span class="brand-name">YOUR NAME.</span>
+    </a>
+
+    <div class="nav-right">
+        <div class="dropdown" id="aboutDropdown">
+            <button class="nav-button" onclick="toggleDropdown()">
+                About ↓
+            </button>
+            <div class="dropdown-content">
+                <a href="#me">01 — Me</a>
+                <a href="#workflow">02 — My Workflow</a>
+                <a href="#work">03 — Selected Work</a>
+                <a href="#contact">04 — FAQ & Contact</a>
+            </div>
+        </div>
+
+        <a href="#contact" class="contact-button">Contact ↗</a>
+    </div>
+</nav>
+</header>
+
+<main>
+
+<!-- 01 ME -->
+
+<section id="me">
+<div class="container">
+    <div class="intro-grid">
+
+        <div>
+            <div class="section-label">01 / ABOUT ME</div>
+            <h1 class="intro-title">THUMBNAIL<br>DESIGNER.</h1>
+            <p class="intro-subtitle">
+                Designing for attention. Creating for clicks.
+            </p>
+        </div>
+
+        <div class="intro-description">
+            <p>
+                Hey, I'm a thumbnail designer specialized in
+                <strong>value loops and YouTube psychology.</strong>
+                I approach thumbnail design as part of the whole
+                packaging, focusing on what actually drives the click.
+            </p>
+
+            <p><strong>What I deliver:</strong></p>
+
+            <ul>
+                <li>1–2 final thumbnails per project, plus sketches when necessary</li>
+                <li>A/B testing</li>
+                <li>Reliable communication and independence</li>
+            </ul>
+
+            <p>
+                Looking for long-term collaborations as well as
+                project-based opportunities.
+            </p>
+
+            <div class="availability">
+                Available for new projects
+            </div>
+        </div>
+
+    </div>
+</div>
+</section>
+
+<!-- 02 WORKFLOW -->
+
+<section id="workflow">
+<div class="container">
+
+    <div class="section-heading">
+        <div>
+            <div class="section-label">02 / THE PROCESS</div>
+            <h2>My workflow.</h2>
+            <p class="section-description">
+                A closer look at how an idea becomes a thumbnail.
+            </p>
+        </div>
+
+        <div class="carousel-controls">
+            <button onclick="moveSlide(-1)">←</button>
+            <button onclick="moveSlide(1)">→</button>
+        </div>
+    </div>
+
+    <div class="carousel">
+        <div class="carousel-track" id="carouselTrack">
+
+            <div class="workflow-slide">
+                <div class="empty-gallery" style="min-height:400px">
+                    <span>＋</span>
+                    Upload your first process image
+                    <label class="upload-label" for="workflowUpload">
+                        + Add images
+                    </label>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="slide-caption">
+        <span id="slideCounter">01 / 01</span>
+        <span>PROCESS DOCUMENTATION</span>
+    </div>
+
+    <input type="file" id="workflowUpload" accept="image/*" multiple>
+
+</div>
+</section>
+
+<!-- 03 SELECTED WORK -->
+
+<section id="work">
+<div class="container">
+
+    <div class="gallery-heading">
+        <div>
+            <div class="section-label">03 / PORTFOLIO</div>
+            <h2>Selected work.</h2>
+            <p class="section-description">
+                A collection of thumbnails and creative projects.
+            </p>
+        </div>
+
+        <label class="upload-label" for="galleryUpload">
+            + Upload thumbnails
+        </label>
+
+        <input type="file" id="galleryUpload" accept="image/*" multiple>
+    </div>
+
+    <div class="gallery" id="gallery">
+
+        <div class="empty-gallery">
+            <span>＋</span>
+            Your work goes here.
+            <p>Upload your first thumbnails to start building your gallery.</p>
+        </div>
+
+    </div>
+
+</div>
+</section>
+
+<!-- FAQ & CONTACT -->
+
+<section id="contact">
+<div class="container">
+
+    <div class="section-label">04 / GET IN TOUCH</div>
+    <h2>FAQ & Contact.</h2>
+
+    <div class="faq-contact">
+
+        <!-- FAQ -->
+
+        <div>
+            <h3 style="font-size:23px; margin-bottom:20px;">
+                Frequently asked.
+            </h3>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFAQ(this)">
+                    What is your usual turnaround time?
+                    <span>+</span>
+                </button>
+                <div class="faq-answer">
+                    Add your answer here. Explain how long a typical
+                    thumbnail project takes.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFAQ(this)">
+                    Do you work long-term?
+                    <span>+</span>
+                </button>
+                <div class="faq-answer">
+                    Yes. I'm particularly interested in building
+                    long-term collaborations with creators and channels.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFAQ(this)">
+                    How does the process work?
+                    <span>+</span>
+                </button>
+                <div class="faq-answer">
+                    Add your explanation of the briefing, research,
+                    sketches, revisions and final delivery process here.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFAQ(this)">
+                    Do you offer A/B testing?
+                    <span>+</span>
+                </button>
+                <div class="faq-answer">
+                    Yes. I can develop alternative thumbnail versions
+                    to help evaluate different creative approaches.
+                </div>
+            </div>
+
+        </div>
+
+        <!-- CONTACT -->
+
+        <div class="contact-info">
+            <h3>Let's work together.</h3>
+            <p>
+                Have a project in mind or looking for a thumbnail designer
+                to work with? Get in touch.
+            </p>
+
+            <div class="contact-links">
+                <a href="mailto:YOUR_EMAIL">
+                    Email <span>↗</span>
+                </a>
+
+                <a href="https://instagram.com/YOUR_USERNAME" target="_blank">
+                    Instagram <span>↗</span>
+                </a>
+
+                <a href="https://discord.com/users/YOUR_ID" target="_blank">
+                    Discord <span>↗</span>
+                </a>
+            </div>
+        </div>
+
+    </div>
+</div>
+</section>
+
+</main>
+
+<footer class="container">
+    <span>© 2026 YOUR NAME.</span>
+    <span>THUMBNAIL DESIGNER / PORTFOLIO</span>
+</footer>
+
+<script>
+
+// NAVIGATION DROPDOWN
+
+function toggleDropdown() {
+    document.getElementById('aboutDropdown').classList.toggle('open');
+}
+
+document.addEventListener('click', function(e) {
+    if (!e.target.closest('#aboutDropdown')) {
+        document.getElementById('aboutDropdown').classList.remove('open');
+    }
+});
+
+document.querySelectorAll('.dropdown-content a').forEach(link => {
+    link.addEventListener('click', () => {
+        document.getElementById('aboutDropdown').classList.remove('open');
+    });
+});
+
+// FAQ ACCORDION
+
+function toggleFAQ(button) {
+    button.parentElement.classList.toggle('active');
+}
+
+// WORKFLOW CAROUSEL
+
+let currentSlide = 0;
+let workflowImages = [];
+
+const track = document.getElementById('carouselTrack');
+
+function renderCarousel() {
+    if (!workflowImages.length) return;
+
+    track.innerHTML = '';
+
+    workflowImages.forEach((image, index) => {
+        const slide = document.createElement('div');
+        slide.className = 'workflow-slide';
+
+        const img = document.createElement('img');
+        img.src = image.url;
+        img.alt = image.name;
+
+        const caption = document.createElement('div');
+        caption.className = 'slide-caption';
+        caption.innerHTML = `<span>PROCESS / ${String(index + 1).padStart(2,'0')}</span>`;
+
+        slide.appendChild(img);
+        slide.appendChild(caption);
+        track.appendChild(slide);
+    });
+
+    currentSlide = Math.min(currentSlide, workflowImages.length - 1);
+    updateCarousel();
+}
+
+function updateCarousel() {
+    track.style.transform = `translateX(-${currentSlide * 100}%)`;
+
+    document.getElementById('slideCounter').textContent =
+        `${String(currentSlide + 1).padStart(2,'0')} / ${String(workflowImages.length || 1).padStart(2,'0')}`;
+}
+
+function moveSlide(direction) {
+    if (!workflowImages.length) return;
+
+    currentSlide = (currentSlide + direction + workflowImages.length) % workflowImages.length;
+    updateCarousel();
+}
+
+document.getElementById('workflowUpload').addEventListener('change', function(e) {
+    const files = Array.from(e.target.files);
+
+    files.forEach(file => {
+        if (!file.type.startsWith('image/')) return;
+
+        workflowImages.push({
+            url: URL.createObjectURL(file),
+            name: file.name
+        });
+    });
+
+    renderCarousel();
+    this.value = '';
+});
+
+// THUMBNAIL GALLERY
+
+const gallery = document.getElementById('gallery');
+
+document.getElementById('galleryUpload').addEventListener('change', function(e) {
+    const files = Array.from(e.target.files);
+
+    const empty = gallery.querySelector('.empty-gallery');
+    if (empty) empty.remove();
+
+    files.forEach(file => {
+        if (!file.type.startsWith('image/')) return;
+
+        const url = URL.createObjectURL(file);
+
+        const item = document.createElement('div');
+        item.className = 'gallery-item';
+
+        const img = document.createElement('img');
+        img.src = url;
+        img.alt = file.name;
+
+        const remove = document.createElement('button');
+        remove.textContent = '×';
+        remove.title = 'Remove thumbnail';
+
+        remove.addEventListener('click', () => {
+            URL.revokeObjectURL(url);
+            item.remove();
+
+            if (!gallery.children.length) {
+                gallery.innerHTML = `
+                    <div class="empty-gallery">
+                        <span>＋</span>
+                        Your work goes here.
+                        <p>Upload your first thumbnails to start building your gallery.</p>
+                    </div>
+                `;
+            }
+        });
+
+        item.appendChild(img);
+        item.appendChild(remove);
+        gallery.appendChild(item);
+    });
+
+    this.value = '';
+});
+
+</script>
+
+</body>
+</html>
