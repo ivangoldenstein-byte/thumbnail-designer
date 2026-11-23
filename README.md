@@ -1,1 +1,1 @@
-# TD
+# thumbnail designer
